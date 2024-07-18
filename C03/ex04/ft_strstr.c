@@ -1,35 +1,47 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmimarke <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/18 17:45:36 by dmimarke          #+#    #+#             */
+/*   Updated: 2024/07/18 17:48:01 by dmimarke         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+/*
 #include <stdio.h>
 #include <string.h>
+*/
 
-char *ft_strstr(char *str, char *to_find);
+char	*ft_strstr(char *str, char *to_find);
 
-char *ft_strstr(char *str, char *to_find)
+char	*ft_strstr(char *str, char *to_find)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
-    if (to_find[0] == '\0')
-    {
-        return (0);
-    }
-
-    i = 0;
-    while (str[i] != '\0')
-    {
-        j = 0;
-        while (str[i + j] != '\0' && str[i + j] == to_find[j])
-        {
-            if (to_find[j + 1] == '\0')
-            {
-                return (&str[i]);
-            }
-            ++j;
-        }
-        ++i;
-    }
-    return (0);
+	if (to_find[0] == '\0')
+	{
+		return (0);
+	}
+	i = 0;
+	while (str[i] != '\0')
+	{
+		j = 0;
+		while (str[i + j] != '\0' && str[i + j] == to_find[j])
+		{
+			if (to_find[j + 1] == '\0')
+			{
+				return (&str[i]);
+			}
+			++j;
+		}
+		++i;
+	}
+	return (0);
 }
-
+/*
 int main(void)
 {
     char    str[] = "fdefrrfargrt";
@@ -41,3 +53,4 @@ int main(void)
     printf("%s :: %s", ft_strstr(str, to_find), strstr(str1, to_find1));
     return (0);
 }
+*/
