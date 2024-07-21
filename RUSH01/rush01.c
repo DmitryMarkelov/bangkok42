@@ -21,6 +21,8 @@ void	ft_arrange_two_three(unsigned int **board, unsigned int **weighs, unsigned 
 unsigned int	**ft_free_arr(unsigned int **arr, unsigned int size);
 unsigned int	**ft_get_weighs(char *params, unsigned int *size);
 unsigned int	**ft_create_arr(unsigned int size);
+unsigned int	ft_can_put_number(unsigned int **board, unsigned int size, unsigned int nbr, unsigned int i, unsigned int j);
+
 
 void	ft_print_error(char *msg)
 {
@@ -61,7 +63,6 @@ unsigned int	**ft_create_arr(unsigned int size)
 	}
 	return (temp);
 }
-
 
 void	ft_print_grid(unsigned int **arr)
 {
@@ -203,46 +204,65 @@ void	ft_arrange_boxes(unsigned int **board, unsigned int **weighs, unsigned int 
 			++i;
 		}
 			ft_arrange_two_three(board, weighs, size);
-			ft_print_grid(board);
+			//ft_print_grid(board);
 
 			finish = 1;
 	}
+}
+
+unsigned int	ft_can_put_number(unsigned int **board, unsigned int size, unsigned int nbr, unsigned int i, unsigned int j)
+{
+	unsigned int cell;
+
+	cell = 0;
+	while (cell < size)
+	{
+		if (board[i][cell] == nbr || board[cell][j] == nbr)
+		{
+			return (0);
+		}
+		++cell;
+	}
+	return (1);
 }
 
 void	ft_arrange_two_three(unsigned int **board, unsigned int **weighs, unsigned int size)
 {
 	unsigned int i;
 	unsigned int j;
-	//unsigned int check;
-	//printf("\n%d\n", size);
 	i = 0;
 	j = 0;
 	size -= 1;	
-	printf("\n%d\n", size);
-	//check = 0;
-	while (i <= size)
+	while (j <= size) // перебор по числам 0 ... 3
 	{
-			if (weighs[0][i] == size - j)
-			{
-				board[size - 1 - j][i] = size + 1 - j;
-			}
-			if (weighs[1][i] == size - j)
-			{
-				board[j + 1][i] = size + 1 - j;
-			}
-			if (weighs[2][i] == size - j)
-			{
-				board[i][size - 1 - j] = size + 1 - j;
-			}
-			if (weighs[3][i] == size - j)
-			{
-				board[size - 2][j + 1] = size + 1 - j;
-			}
-		++j;	
-		++i;
+		while (i <= size)  // перебор по условиям in conditions 0 .. 3
+		{
+				if (weighs[0][i] == size - j)					// верхние столбцы
+				{
+					if (ft_can_put_number(board, size, size - j, size - 1 - j, i) == 1)
+					{
+						board[size - 1 - j][i] = size + 1 - j;
+					}
+				}
+				if (weighs[1][i] == size - j)					// нижние столбцы
+				{
+					board[j + 1][i] = size + 1 - j;
+				}
+				if (weighs[2][i] == size - j)					// левые строки
+				{
+					board[i][size - 1 - j] = size + 1 - j;
+				}
+				if (weighs[3][i] == size - j)					// правые строки
+				{
+					board[size - 2][j + 1] = size + 1 - j;
+				}
+			++i;
+		}
+		i = 0;
+		++j;
+		ft_print_grid(board);
+		if (j == 2) break;
 	}
-	ft_print_grid(board);
-
 }
 
 
@@ -263,7 +283,7 @@ int	main(int argc, char **argv)
 		{	
 			board = ft_create_arr(*size);
 			ft_arrange_boxes(board, weighs, *size);
-			ft_print_grid(board);		
+			//ft_print_grid(board);		
 		}
 	}
 	else 
