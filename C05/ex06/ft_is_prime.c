@@ -1,33 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_is_prime.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmingrat <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dmimarke <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/18 20:32:07 by nmingrat          #+#    #+#             */
-/*   Updated: 2024/07/18 20:41:23 by nmingrat         ###   ########.fr       */
+/*   Created: 2024/07/22 22:31:01 by dmimarke          #+#    #+#             */
+/*   Updated: 2024/07/22 22:36:59 by dmimarke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+/*
+#include <stdio.h>
+*/
 
-#include <unistd.h>
+int	ft_is_prime(int nb);
 
-int	ft_sqrt(int nb)
+int	ft_is_prime(int nb)
 {
-	int	index;
-	int	sub_t;
+	int	ittr;
 
-	index = 0;
-	sub_t = 1;
-	if (nb == 2)
+	if (nb < 2)
 		return (0);
-	while (nb > 0)
+	ittr = 2;
+	while (ittr <= (nb / ittr))
 	{
-		nb -= sub_t;
-		sub_t += 2;
-		index++;
+		if ((nb % ittr) == 0)
+			return (0);
+		++ittr;
 	}
-	if (nb != 0)
-		return (0);
-	return (index);
+	return (1);
 }
+/*
+int	main(void)
+{
+	printf("%d", ft_is_prime(9));
+	return (0);
+}
+*/

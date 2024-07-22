@@ -1,22 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_recursive_power.c                               :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmingrat <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dmimarke <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/18 20:31:52 by nmingrat          #+#    #+#             */
-/*   Updated: 2024/07/18 20:31:53 by nmingrat         ###   ########.fr       */
+/*   Created: 2024/07/22 22:27:14 by dmimarke          #+#    #+#             */
+/*   Updated: 2024/07/22 22:30:30 by dmimarke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+/*
+#include <stdio.h>
+*/
 
-#include <unistd.h>
+int	ft_sqrt(int nb);
 
-int	ft_recursive_power(int nb, int power)
+int	ft_sqrt(int nb)
 {
-	if (power == 0)
-		return (1);
-	else if (power < 0)
+	int	find_nb;
+
+	find_nb = 0;
+	while (find_nb * find_nb < nb)
+		find_nb++;
+	if (find_nb * find_nb == nb)
+		return (find_nb);
+	else
 		return (0);
-	return (nb * ft_recursive_power(nb, power - 1));
 }
+/*
+int 	main(void)
+{
+	printf("%d", ft_sqrt(25));
+	return (0);
+}
+*/
