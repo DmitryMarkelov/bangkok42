@@ -9,9 +9,9 @@
 /*   Updated: 2024/07/18 18:10:14 by dmimarke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+/*
 #include <stdio.h>
-
+*/
 int ft_strlen(char *str);
 
 int ft_strlen(char *str)
@@ -26,9 +26,10 @@ int ft_strlen(char *str)
     }
     return (size);
 }
-
+/*
 int main(void)
 {
     printf("%d", ft_strlen("Hello world1"));
     return (0);
 }
+*/
