@@ -35,6 +35,7 @@ int	ft_strlen(char *str)
 	int	count;
 
 	index = 0;
+	count = 0;
 	while (str[index] != '\0')
 	{
 		index++;
