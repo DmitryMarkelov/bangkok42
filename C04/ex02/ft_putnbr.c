@@ -11,36 +11,39 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdio.h>
 
-void c(int nb);
+void ft_putnbr(int nb);
 
 void ft_putnbr(int nb)
 {
     char    c;
-	
-    while (nb > 1)
-	{
-		if (nb < 10 && nb > 1)
-		{
-            c = nb + 48;
-            write(1, &c, 1);
-            //printf("%d", nb);
-			//rnb *= 10;
-			//rnb += nb % 10;
-		}
+
+    if (nb == -2147483648)
+    {
+        write(1, "-2147483648", 11);
+    }
+    else
+    {
+        if (nb < 0)
+        {
+            nb *= -1;
+        	write(1, "-", 1);
+	    }
+        if (nb > 9)
+        {
+            ft_putnbr(nb / 10);
+            ft_putnbr(nb %= 10);
+        }
         else
         {
-            c = nb * 10 + 48;
+            c = nb + 48;
             write(1, &c, 1);
         }
-		nb = nb / 10;
-        ft_putnbr(nb);
     }
 }
 
 int main(void)
 {
-    ft_putnbr(42);
+    ft_putnbr(-2147483648);
     return (0);
 }
