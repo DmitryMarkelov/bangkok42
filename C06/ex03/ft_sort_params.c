@@ -1,48 +1,82 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_sort_params.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmimarke <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/24 19:13:57 by dmimarke          #+#    #+#             */
+/*   Updated: 2024/07/24 20:27:37 by dmimarke         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 
-void	ft_swap(char **x, char **y)
+void	ft_arg_sort(char **argv, int argc);
+int		ft_argv_comp(char *argv1, char *argv2);
+void	ft_argv_swap(char **argv1, char **argv2);
+
+void	ft_argv_swap(char **argv1, char **argv2)
 {
-	char *temp;		
-	temp = *x;
-	*x = *y;
-	*y = temp;
+	char	*temp;		
+
+	temp = *argv1;
+	*argv1 = *argv2;
+	*argv2 = temp;
 }
 
-int		ft_strcmp(char *s1, char *s2)
+int	ft_argv_comp(char *argv1, char *argv2)
 {
-	while (*s1 != '\0' && (*s1 == *s2))
+	int	index;
+
+	index = 0;
+	while (argv1[index] != '\0' && (argv1[index] == argv2[index]))
 	{
-		s1++;	
-		s2++;
+		++index;
 	}
-	return (*s1 - *s2);
+	return (argv1[index] - argv2[index]);
 }
 
-void	ft_arg_sort(char *tab[], int size) 
+void	ft_arg_sort(char **argv, int argc)
 {
-	int i;			
-	int j;				
-	i = 0;						
-	while (i < size)		
+	int	index1;
+	int	index2;
+
+	index1 = 0;
+	while (index1 < argc)
 	{
-		j = 0;					
-		while (j < size - i - 1)	
+		index2 = 0;
+		while (index2 < argc -1 - index1 - 1)
 		{
-			if (ft_strcmp(tab[j], tab[j + 1]) > 0)	
-				ft_swap(&tab[j], &tab[j + 1]);		
-			j++;					
+			if (ft_argv_comp(argv[index2], argv[index2 + 1]) > 0)
+				ft_argv_swap(&argv[index2], &argv[index2 + 1]);
+			++index2;
 		}
-		i++;						
+		++index1;
 	}
 }
 
-int		main(int argc, char *argv[])	
+int	main(int argc, char *argv[])
 {
-	if(argc > 1)	
+	int	argv_index;
+	int	index;
+
+	if (argc > 1)
 	{
-		ft_arg_sort(argv + 1, argc - 1);	
-		// печать всех аргументов от 1 до после  сделать while argv[1] и до конца пока argv[n] не будет равен нулю 
-                ft_arg_arr(argv + 1);			
+		++argv;
+		ft_arg_sort(argv, argc);
+		argv_index = 0;
+		while (argv_index < argc - 1)
+		{
+			index = 0;
+			while (argv[argv_index][index] != '\0')
+			{
+				write(1, &argv[argv_index][index], 1);
+				++index;
+			}
+			++argv_index;
+			write(1, "\n", 1);
+		}
 	}
-	return (0);					
+	return (0);
 }
