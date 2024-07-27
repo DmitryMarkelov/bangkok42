@@ -1,20 +1,28 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_start_conversion.c                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dmimarke <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/27 16:07:05 by dmimarke          #+#    #+#             */
-/*   Updated: 2024/07/27 16:54:30 by dmimarke         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include <ft_all_functions.h>
+#include "ft_all_functions.h"
 
 void	ft_start_conversion(int argc, char **argv);
 
 void	ft_start_conversion(int argc, char **argv)
 {
-	if ()
+	char	*number;
+	if (argc == 2 ||  argc == 3)
+	{
+		number = ft_is_correct_input(argv[1]) ;
+		if (number != NULL)
+		{
+			if (argc == 2 && ft_is_dictionary(number, "default"))
+			{}
+			else if  (argc == 3 && ft_is_dictionary(number, argv[2]))
+			{}
+			else
+				ft_print_string("Erorr: wrong dictionary");
+		}
+		else
+		{
+			ft_print_string("Error: here is not any number according the conditions to check");
+			return ;
+		}
+	}
+	else
+		ft_print_string("Erorr: wrong number of parameters");
 }

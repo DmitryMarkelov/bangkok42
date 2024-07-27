@@ -1,25 +1,45 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_check_input.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dmimarke <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/27 16:02:37 by dmimarke          #+#    #+#             */
-/*   Updated: 2024/07/27 16:11:07 by dmimarke         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include "ft_all_functions.h"
 
-int     ft_is_dictionary(int argc, char **argv);
-int     ft_is_correct_input();
+int	ft_is_dictionary(char *number, char *dictionary);
+char   *ft_is_correct_input(char *number);
 
-int	ft_is_dictionary(int argc, char **argv)
+int	ft_is_dictionary(char *number, char *dictionary)
 {
-
-	return (0);
+	char	*dictionary_file;
+	if (ft_str_compare(dictionary, "default"))
+		dictionary_file = ft_str_copy("numbers.dict");
+	else
+		dictionary_file = ft_str_copy(dictionary);
+	//проверка словаря
+	ft_print_string(dictionary_file);
+	ft_print_string(number);	
+	return (1);
 }
 
-int	ft_is_correct_input()
-{
-	return (0);
+char	*ft_is_correct_input(char *number)
+{	
+	int	index;
+	int	count;
+	char	*res;
+
+	index = 0;
+	count = 0;
+	res = (char *)malloc(ft_get_size(number) * sizeof(char));
+	while (number[index] != '\0')
+	{
+		if (number[index] == '-' && index == 0)
+		{
+			res[count++] = '-';
+			++index;
+		}
+		if (number[index] >='0' && number[index] <= '9' )
+			res[count++] = number[index];
+		else
+		{
+			res = NULL;
+			break;
+		}
+		++index;
+	}
+	return (res);
 }

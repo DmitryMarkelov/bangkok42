@@ -1,19 +1,7 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   rush-02.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dmimarke <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/27 14:30:12 by dmimarke          #+#    #+#             */
-/*   Updated: 2024/07/27 16:10:41 by dmimarke         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_all_functions.h"
 
 int	main(int argc, char **argv)
 {
-	ft_start_conversion(arc, argv);
+	ft_start_conversion(argc, argv);
 	return (0);
 }
