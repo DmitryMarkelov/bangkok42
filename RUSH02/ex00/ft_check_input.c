@@ -1,19 +1,30 @@
 #include "ft_all_functions.h"
 
-int	ft_is_dictionary(char *number, char *dictionary);
+void	ft_is_dictionary(char *number, char *dictionary);
 char   *ft_is_correct_input(char *number);
+int	ft_check_dict(FILE *dict_file); //, char *dict_words, char *indexes);
 
-int	ft_is_dictionary(char *number, char *dictionary)
+void	ft_is_dictionary(char *number, char *dictionary)
 {
-	char	*dictionary_file;
-	if (ft_str_compare(dictionary, "default"))
-		dictionary_file = ft_str_copy("numbers.dict");
+	FILE *dict_file;
+//	char	*dict_words;
+//	char	*indexes;
+
+//	dict_words = NULL;
+//	indexes = NULL;
+	if (dictionary == NULL)
+		dict_file = fopen("numbers.dict", "r");
 	else
-		dictionary_file = ft_str_copy(dictionary);
-	//проверка словаря
-	ft_print_string(dictionary_file);
-	ft_print_string(number);	
-	return (1);
+		dict_file = fopen(dictionary, "r");
+	if (dict_file != NULL && ft_check_dict(dict_file))//, dict_words, indexes))
+	{
+		printf("%s" , number);
+	}	
+	else
+	{
+		ft_print_string("Error the dictionary file is not exist");
+	}
+	fclose(dict_file);
 }
 
 char	*ft_is_correct_input(char *number)
@@ -42,4 +53,20 @@ char	*ft_is_correct_input(char *number)
 		++index;
 	}
 	return (res);
+}
+
+int ft_check_dict(FILE *dict_file) //, char *dict_words, char *indexes)
+{
+	ssize_t	read;
+	size_t	len;
+	char *str; 
+
+	len = 0;
+	while ((read = getline(&str, &len, dict_file)) != -1)
+	{
+		printf("%zu  = %s\n", read, str);
+	}
+	//printf("%s + %s", dict_words, indexes);
+	free(str);
+	return (0);
 }

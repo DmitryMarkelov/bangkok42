@@ -10,10 +10,10 @@ void	ft_start_conversion(int argc, char **argv)
 		number = ft_is_correct_input(argv[1]) ;
 		if (number != NULL)
 		{
-			if (argc == 2 && ft_is_dictionary(number, "default"))
-			{}
-			else if  (argc == 3 && ft_is_dictionary(number, argv[2]))
-			{}
+			if (argc == 2)
+				ft_is_dictionary(number, NULL);
+			else if  (argc == 3)
+				ft_is_dictionary(number, argv[2]);
 			else
 				ft_print_string("Erorr: wrong dictionary");
 		}

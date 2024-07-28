@@ -3,9 +3,10 @@
 
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdio.h>
 
 void	ft_start_conversion(int argc, char **argv);
-int	ft_is_dictionary(char *number, char *dictionary);
+void	ft_is_dictionary(char *number, char *dictionary);
 char   * ft_is_correct_input(char *number);
 void	ft_print_string(char *str);
 int	ft_get_size(char *str);
