@@ -2,28 +2,19 @@
 
 void	ft_is_dictionary(char *number, char *dictionary);
 char   *ft_is_correct_input(char *number);
-int	ft_check_dict(FILE *dict_file); //, char *dict_words, char *indexes);
+int	ft_check_dict(FILE *dict_file); 
 
 void	ft_is_dictionary(char *number, char *dictionary)
 {
 	FILE *dict_file;
-//	char	*dict_words;
-//	char	*indexes;
-
-//	dict_words = NULL;
-//	indexes = NULL;
 	if (dictionary == NULL)
 		dict_file = fopen("numbers.dict", "r");
 	else
 		dict_file = fopen(dictionary, "r");
-	if (dict_file != NULL && ft_check_dict(dict_file))//, dict_words, indexes))
-	{
-		printf("%s" , number);
-	}	
+	if (dict_file != NULL && ft_check_dict(dict_file))
+		ft_do_conversion(dict_file, number);
 	else
-	{
-		ft_print_string("Error the dictionary file is not exist");
-	}
+		ft_print_string("Error with dictionary");
 	fclose(dict_file);
 }
 
@@ -55,18 +46,37 @@ char	*ft_is_correct_input(char *number)
 	return (res);
 }
 
-int ft_check_dict(FILE *dict_file) //, char *dict_words, char *indexes)
+int ft_check_dict(FILE *dict_file)
 {
 	ssize_t	read;
 	size_t	len;
-	char *str; 
+	char *str;
+	int	index;
+	int	flag;
 
+	flag = 1;
 	len = 0;
 	while ((read = getline(&str, &len, dict_file)) != -1)
 	{
-		printf("%zu  = %s\n", read, str);
+		index = 0;
+		while (str[index] != '\0')
+		{
+			while (str[index] >= '0' && str[index] <= '9')
+				++index;
+			while (str[index] == ' ')
+				++index;
+			if (str[index] != ':')
+				break;
+			else
+				++index;
+			while (str[index] == ' ')
+				++index;
+			while (str[index] > 32 && str[index] < 127)
+				++index;
+		}
+		if (str != NULL && index !=  ft_get_size(str) - 1)
+			flag = 0;
 	}
-	//printf("%s + %s", dict_words, indexes);
 	free(str);
-	return (0);
+	return (flag);
 }

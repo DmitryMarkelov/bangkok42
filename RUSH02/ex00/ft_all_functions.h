@@ -12,6 +12,7 @@ void	ft_print_string(char *str);
 int	ft_get_size(char *str);
 char	*ft_str_copy(char *src);
 int	ft_str_compare(char *str1, char *str2);
+void    ft_do_conversion(FILE *dict_file, char *number);
 
 #endif
 
