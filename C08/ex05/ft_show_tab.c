@@ -55,4 +55,5 @@ void	ft_print_numb(int numb)
 		print %= index; 
 		index /= 10;
 	}
+	write(1, "\n", 1);
 }
