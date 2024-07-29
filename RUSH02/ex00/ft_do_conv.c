@@ -64,7 +64,6 @@ void    ft_print_result(FILE *dict_file,  char *numb, int pow)
 	size_t	len;
 	char *str;
         int     index;
-        //      printf("%s\n", numb);
         rewind(dict_file);
         while ((read = getline(&str, &len, dict_file)) != -1)
         {
